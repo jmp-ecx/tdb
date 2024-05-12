@@ -7,7 +7,8 @@ from tdb.tui import TUI
 
 # TODO - install script, which gets this all downloaded into the ProgramFiles directory
 
-DEFAULT_CONFIG = spec.load('D:/Projects/TagDB/config/.tdb/conf.json')
+# Load a default configuration
+DEFAULT_CONFIG = spec.load('D:/Projects/TagDB/config/default.json')
 
 STARTUP_DIALOG = 'Do you want to load a tdb or create a new one?\n' \
                  ' 1. New Project\n' \
