@@ -8,7 +8,7 @@ class TUI:
     """
     if prompt != '':
       print(prompt)
-    value = input('int   > ')
+    value = input('int > ')
     try:
       return int(value)
     except TypeError as e:
@@ -36,6 +36,7 @@ class TUI:
     """Prompts the user to enter a string.
 
     :param prompt: The prompt to ask (can be left empty)
+    :param inline: If you want the prompt to appear on the same line as the carat.
     :return: The input provided
     """
     if prompt != '':
