@@ -1,4 +1,4 @@
-class TUI: # TODO
+class TUI:
   @staticmethod
   def get_int(prompt:str='') -> int:
     """Prompts the user to enter an integer.
@@ -32,12 +32,12 @@ class TUI: # TODO
       return TUI.get_float(prompt)
 
   @staticmethod
-  def get_str(prompt:str='') -> str:
+  def get_str(prompt:str='', inline:bool=True) -> str:
     """Prompts the user to enter a string.
 
     :param prompt: The prompt to ask (can be left empty)
     :return: The input provided
     """
     if prompt != '':
-      print(prompt)
-    return input('str   > ')
+      print(prompt, end=('' if inline else '\n'))
+    return input(' > ')
