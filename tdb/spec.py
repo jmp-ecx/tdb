@@ -1,4 +1,4 @@
-import json
+import json # TODO - replace json with YAML
 
 def load(path: str) -> dict:
   """Loads the given JSON config file, as a python dict.

@@ -1,6 +1,8 @@
 from __future__ import annotations
 from enum import Enum, auto
 
+# TODO - documentation
+
 """
 Examples:
 
@@ -15,6 +17,12 @@ file add ideas\\list.txt
 # the -- indicates a list parameter
 # --p = parents
 tag new Idea --p Project Planning
+
+# Quit and save changes.
+quit
+
+# Quit without saving.
+quit -ns
 """
 
 class TkType(Enum):
@@ -24,6 +32,7 @@ class TkType(Enum):
   project = auto()
   file    = auto()
   tag     = auto()
+  stop    = auto() # 'quit'
 
   list_arg = auto() # --<Something> <arg> ...
   solo_arg = auto() # -<Something>
