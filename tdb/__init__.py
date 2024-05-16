@@ -4,6 +4,12 @@ import tdb.tag as tag
 import os
 
 class Project:
+  """A tdb project.
+  Holds the context for the project, and provides a simple way to safely
+  work with and configure the project. Just hand it a configuration dictionary,
+  and it'll load and save everything for you.
+  """
+
   def __init__(self, conf: dict) -> None:
     self.name         = conf['project-name']
     self.cwd          = conf['project-directory']
@@ -21,7 +27,6 @@ class Project:
     """ Recursively iterates through all subdirectories, finding all files of the types specified.
 
     :param _dir: The directory to search through.
-    :return:
     """
 
     # Iterate through teh directory
@@ -34,8 +39,8 @@ class Project:
         self.__parse_dir(i) # If it's a directory, recurse 1 layer deeper.
 
   def __get_tags(self) -> None:
+    """Loads the project's tags, found in $(ProjectDir).tdb/tags.json"""
     d = spec.load(f'{self.cwd}/.tdb/tags.json')
-    print(d)
     for k, v in d.items():
       self.tags.append(tag.Tag.gen(k, v))
 
@@ -43,7 +48,6 @@ class Project:
     """Sets the root directory of the tdb.
 
     :param path: The new path of the tdb
-    :return:
     """
     self.cwd = path
 
