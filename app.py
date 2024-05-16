@@ -4,12 +4,13 @@ import tdb
 
 # TODO - install script, which gets this all downloaded into the ProgramFiles directory
 
-# Load a default configuration
-DEFAULT_CONFIG = spec.load('./config/default-config.json')
+# Testing configuration
+conf = spec.load('./config/.tdb/conf.json')
 
 def main() -> None:
-  repl = REPL()
-  repl.read_line()
+  proj = tdb.Project(conf)
+  for t in proj.tags:
+    t.print()
 
 if __name__ == '__main__':
     main()

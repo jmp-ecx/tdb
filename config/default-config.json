@@ -1,8 +1,9 @@
 {
-  "project_directory" : "InvalidPath",
+  "project-name"      : "default-name",
+  "project-directory" : "InvalidPath",
   "filetypes"   : ["jpg", "jpeg", "png", "bmp", "tiff"],
   "ignores" : {
-    "ignore_dirs"  : [],
-    "ignore_files" : []
+    "ignore-dirs"  : [],
+    "ignore-files" : []
   }
 }

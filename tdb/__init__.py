@@ -1,17 +1,21 @@
 import tdb.spec
 import tdb.image as img
+import tdb.tag as tag
 import os
 
 class Project:
   def __init__(self, conf: dict) -> None:
-    self.cwd          = conf['project_directory']
-    self.ignore_dirs  = conf['ignores']['ignore_dirs']
-    self.ignore_files = conf['ignores']['ignore_files']
+    self.name         = conf['project-name']
+    self.cwd          = conf['project-directory']
+    self.ignore_dirs  = conf['ignores']['ignore-dirs']
+    self.ignore_files = conf['ignores']['ignore-files']
     self.filetypes    = conf['filetypes']
 
     self.project_files: list[img.Image] = []
+    self.tags: list[tag.Tag] = []
 
     self.__parse_dir(self.cwd)
+    self.__get_tags()
 
   def __parse_dir(self, _dir: str) -> None:
     """ Recursively iterates through all subdirectories, finding all files of the types specified.
@@ -29,6 +33,12 @@ class Project:
       elif os.path.isdir(i):
         self.__parse_dir(i) # If it's a directory, recurse 1 layer deeper.
 
+  def __get_tags(self) -> None:
+    d = spec.load(f'{self.cwd}/.tdb/tags.json')
+    print(d)
+    for k, v in d.items():
+      self.tags.append(tag.Tag.gen(k, v))
+
   def set_path(self, path: str) -> None:
     """Sets the root directory of the tdb.
 
@@ -43,11 +53,12 @@ class Project:
     :return: Returns a python dict containing the tdb config.
     """
     return {
-      'project_directory': self.cwd,
+      'project-name'     : self.name,
+      'project-directory': self.cwd,
       'filetypes'        : self.filetypes,
       'ignores':           {
-        'ignore_dirs':  self.ignore_dirs,
-        'ignore_files': self.ignore_files,
+        'ignore-dirs':  self.ignore_dirs,
+        'ignore-files': self.ignore_files,
       },
     }
 
