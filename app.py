@@ -1,6 +1,5 @@
-import tdb.spec as spec
+import tdb.tui as tui
 import tdb
-
 
 def main() -> None:
   pass
