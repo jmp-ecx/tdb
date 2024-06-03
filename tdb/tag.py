@@ -53,6 +53,12 @@ class Tag:
     for c in self.children:
       c.print(indent+1) # For every child tag, print with 1 level more of indent
 
+  def get(self) -> dict:
+    res = {}
+    for c in self.children:
+      res[c.name] = c.get()
+    return res
+
   def __repr__(self) -> str:
     """A simple string representation of just this tag.
 

@@ -44,6 +44,12 @@ class Project:
     for k, v in d.items():
       self.tags.append(tag.Tag.gen(k, v))
 
+  def add_tag(self, name: str, parent: str) -> None:
+    # TODO - split `parent` into parent list.
+    #      - check that the parent path exists.
+    #      - If it does, create the new tag, and add it as a child to it's parent.
+    pass
+
   def set_path(self, path: str) -> None:
     """Sets the root directory of the tdb.
 
@@ -74,8 +80,13 @@ class Project:
     if not os.path.isdir(f'{self.cwd}/.tdb'):
       os.mkdir(f'{self.cwd}/.tdb') # If the .tbd dir doesn't exist, make it.
 
+    tags = {}
+    for t in self.tags:
+      tags[t.name] = t.get()
+
     try:
       spec.save(f'{self.cwd}/.tdb/conf.json', self.cfg()) # Save the config file.
+      spec.save(f'{self.cwd}/.tdb/tags.json', tags)       # Save the tags.
     except Exception as e:
       print(e) # If for some reason, it doesnt work, print the error and return false
       return False

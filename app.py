@@ -43,11 +43,14 @@ else:
   exit_application()
 
 # TODO - search for images with tags
+# TODO - adding tags to images
+# TODO - creating new tags
 ACTION_PROMPT = \
   'What would you like to do?\n' + \
   ' 1. Create new tag\n'         + \
   ' 2. Add tag to image\n'       + \
-  ' 3. Quit application\n'
+  ' 3. Search for an image\n'    + \
+  ' 4. Quit application\n'
 
 while True:
   uin = 0
@@ -58,6 +61,8 @@ while True:
   if uin == 1:
     pass
   elif uin == 2:
+    pass
+  elif uin == 3:
     pass
   else:
     proj.save()
